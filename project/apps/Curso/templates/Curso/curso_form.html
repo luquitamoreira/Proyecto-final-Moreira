@@ -1,0 +1,17 @@
+{% extends 'Curso/index.html' %}
+
+{% block INDEX_TITULO %}
+    Crear/Acutalizar cursos
+{% endblock INDEX_TITULO %}
+
+{% block INDEX_CONTENIDO %}
+
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Guardar</button>
+    </form>
+    
+    <a href="{% url 'Home:home' %}"> IR AL MENU</a>
+
+{% endblock INDEX_CONTENIDO %}

@@ -1,10 +1,13 @@
 {% extends 'Home/index.html' %}
 
 {% block INDEX_TITULO %}
-    Categorias de cursos
+    Cursos
 {% endblock INDEX_TITULO %}
 
 {% block INDEX_CONTENIDO %}
+    <h3 class="pb-lg-3">
+        Categoria de cursos
+    </h3>
     <div class="d-grid gap-1">
         {% if user.is_staff %}
             <a href="{% url 'Curso:cursocategoria_create' %}" class="btn btn-primary">Crear categorias</a>
@@ -13,6 +16,20 @@
 
         <a href="{% url 'Curso:cursocategoria_list' %}" class="btn btn-primary">Listar categorias</a>
         <br>
-        <a href="{% url 'Home:home' %}"> IR AL MENU</a>
     </div>   
+    <h3 class="pb-lg-3">
+        Cursos
+    </h3>
+    <div class="d-grid gap-1">
+        {% if user.is_staff %}
+            <a href="{% url 'Curso:curso_create' %}" class="btn btn-primary">Crear cursos</a>
+            <br>   
+        {% endif %}
+
+        <a href="{% url 'Curso:curso_list' %}" class="btn btn-primary">Listar cursos</a>
+        <br>
+    </div>   
+
+
+    <a href="{% url 'Home:home' %}"> IR AL MENU</a>
 {% endblock INDEX_CONTENIDO %}
