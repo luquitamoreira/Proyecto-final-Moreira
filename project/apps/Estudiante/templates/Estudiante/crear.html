@@ -1,0 +1,16 @@
+{% extends 'Home/base.html' %}
+
+{% block TITULO %}
+    CREAR ESTUDIANTE 
+{% endblock TITULO %}
+{% block CONTENIDO %}
+    
+    <form method="post"> 
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit"> GUARDAR </button>
+    </form>
+
+    <a href="{% url 'Home:home' %}"> IR AL MENU</a>
+    
+{% endblock CONTENIDO %}

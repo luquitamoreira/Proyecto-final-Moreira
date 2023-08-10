@@ -1,0 +1,17 @@
+{% extends 'Home/index.html' %}
+
+{% block INDEX_TITULO %}
+    Estudiantes
+{% endblock INDEX_TITULO %}
+
+{% block INDEX_CONTENIDO %}
+    {% for estudiante in  estudiantes %}
+        <p>{{estudiante.nombre}}</p>
+        <p>{{estudiante.edad}}</p>
+        <p>{{estudiante.telefono}}</p>
+
+    {% endfor %}
+
+    <a href="{% url 'Home:home' %}"> IR AL MENU</a>
+    
+{% endblock INDEX_CONTENIDO %}

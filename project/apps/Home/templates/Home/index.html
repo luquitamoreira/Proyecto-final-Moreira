@@ -1,0 +1,48 @@
+{% extends 'Home/base.html' %}
+{% load static %}
+
+{% block BASE_CONTENIDO %}
+    <div class="row align-items-center my-5">
+
+        <h1 class="pb-lg-3 text-bg-light">
+            {% block INDEX_TITULO %}   
+                Pagina de Inicio
+            {% endblock INDEX_TITULO %}
+        </h1>    
+    </div>
+    
+    {% block INDEX_CONTENIDO %}
+        {% if user.is_authenticated %}
+            {{ mensaje }}
+            <h3>Bienvenido {{user.username}}</h3>
+        {% endif %}
+
+        {% if user.is_staff %}
+            <div class="row" >
+                <a href="{% url 'admin:index' %}" class="btn btn-outline-dark">Panel de administracion</a>
+            </div>
+            <div class="row">
+                <a href="{% url 'Home:register' %}"" class="btn btn-outline-dark">Registrar nuevo Usuario</a>
+            </div>
+        {% endif %}
+
+        <!-- Heading Row-->
+        <div class="row gx-4 gx-lg-5 align-items-center my-5">
+            <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0" src="{% static 'Home/img/imagen3.jpg' %}" alt="..." /></div>
+            <div class="col-lg-5">
+                <h1 class="font-weight-light">South Pointe School</h1>
+                <p>TLa comunidad de la escuela primaria Miami Beach South Pointe reconoce que cada niño único tiene dones y talentos. Aceptamos el desafío de encontrar y nutrir estas cualidades en cada niño. Creemos que cada educador, estudiante y padre tiene la capacidad, el talento y el deseo de hacer cambios drásticos en su educación y la de los demás. Por lo tanto, nuestra misión en Miami Beach!</p>
+                <a class="btn btn-primary" href="https://wa.me/35415145" target="_blank">WhatsApp</a>
+            </div>
+        </div>
+        <!-- Call to Action-->
+
+        <!-- Content Row-->
+        <div class="row gx-4 gx-lg-5">
+            {% include 'Home/card.html'  with card="Profesor del mes" %}
+                
+            
+        </div>
+    {% endblock INDEX_CONTENIDO %}
+    
+{% endblock BASE_CONTENIDO %}
