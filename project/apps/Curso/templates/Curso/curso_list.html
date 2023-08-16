@@ -6,21 +6,29 @@
 
 {% block INDEX_CONTENIDO %}
     {% if object_list  %}
+
+        <div class="py-lg-4">
+           <form action="{% url 'Curso:curso_list' %} "method= 'get'>
+                <input type="text" name ="consulta" placeholder="Buscar ...">
+           </form> 
+        </div>
         {% for object in object_list %}
             <ul>
                 <li>{{ object.nombre }} ${{object.precio}}
-                    <a href="{% url 'Curso:curso_detail' object.id %}">Ver detalle</a>
-                    <a href="{% url 'Curso:curso_update' object.id %}">Actualizar</a>
-                    <a href="{% url 'Curso:curso_delete' object.id %}">Eliminar</a>
+                    <a href="{% url 'Curso:curso_detail' object.id %}" class="btn btn-secondary btn-sm"> 
+                        Ver detalle</a>
+                    <a href="{% url 'Curso:curso_update' object.id %}" class="btn btn-primary btn-sm"> 
+                        Actualizar</a>
+                    <a href="{% url 'Curso:curso_delete' object.id %}" class="btn btn-danger btn-sm"> 
+                        Eliminar</a>
                 </li>
             </ul>            
         {% endfor %}
     {% else %}
-        <p> no hay elementos </p>
+        <p class=" fs-4 fst-italic"> no hay elementos registrados </p>
     {% endif %}
 
     
 
-    <a href="{% url 'Home:home' %}"> IR AL MENU</a>
-
+    {% include 'Home/index_back.html' %}
 {% endblock INDEX_CONTENIDO %}

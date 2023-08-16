@@ -1,3 +1,5 @@
+from typing import Any
+from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect
 from django.http import HttpRequest,HttpResponse
 from django.urls import reverse_lazy
@@ -66,6 +68,14 @@ class CursoCategoriaDelete(DeleteView):
 #LIST
 class CursoList(ListView):
     model = models.Curso
+
+    def get_queryset(self) -> QuerySet[Any]:
+        consulta = self.request.GET.get("consulta", "")
+        if consulta:
+            object_list = models.Curso.objects.filter(nombre__icontains=consulta)
+        else:
+            object_list = models.Curso.objects.all()
+        return object_list
 #CREATE 
 class CursoCreate(CreateView):
     model=models.Curso
