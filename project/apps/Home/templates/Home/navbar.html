@@ -1,3 +1,4 @@
+{% load static %}
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container px-5">
         <a class="navbar-brand" href="#!">South Pointe School</a>
@@ -11,6 +12,12 @@
                     <li class="nav-item"><a class="nav-link {%if request.path == "/Curso/"%} active {%endif%}" href="{% url 'Curso:home' %}">Curso</a></li>
                     <li class="nav-item"><a class="nav-link text-bg-info" href="#!">{{ user.username }}</a></li>
                     <li class="nav-item"><a class="nav-link text-bg" href="{% url 'Home:logout' %}">Logout</a></li>
+                {% if user.profesor.avatar.url  %}
+                    <li class="nav-item"> <img src="{{user.profesor.avatar.url}}" alt="avatar" style="height: 30px;"> </li>
+                    {% else %}
+                        <li class="nav-item"> <img src="{% static 'Profesor/avatares.png' %}" alt="avatar" style="height: 30px;"> </li>
+
+                {% endif %}
                 {% else %}
                     <li class="nav-item"><a class="nav-link {%if request.path == "/about/"%} active {%endif%}" href="{% url 'Home:about' %}">Sobre la escuela</a></li>
                     <li class="nav-item"><a class="nav-link {%if request.path == "/Contacto/"%} active {%endif%}" href="#!">Contacto</a></li>

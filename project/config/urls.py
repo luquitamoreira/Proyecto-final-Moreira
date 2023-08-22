@@ -1,3 +1,4 @@
+
 """
 URL configuration for config project.
 
@@ -16,6 +17,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,3 +26,8 @@ urlpatterns = [
     path("Estudiante/",include("Estudiante.urls")),
     path("Curso/",include("Curso.urls"))
 ]
+
+from django.conf import settings
+
+if settings.DEBUG == True:
+    urlpatterns += static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)
